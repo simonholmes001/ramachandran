@@ -38,11 +38,11 @@ class Ramachandran:
         Returns the dihedral angle between two vectors
         :param x: numpy array of coordinates for vector #1
         :param y: numpy array of coordinates for vector #2
-        :return: the cosine of the dihedral angle between the two vectors & the dihedral angle itself
+        :return: the cosine of the dihedral angle between the two vectors & the dihedral angle itself in radians
         """
         cos_theta = np.dot(x, y) / (np.linalg.norm(x) * np.linalg.norm(y))
         theta = np.arccos(cos_theta)
-        return cos_theta, theta
+        return cos_theta, theta # Outputs the angle theta in radians
 
     def make_test_array(self, test_sample):
         """
