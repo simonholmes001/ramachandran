@@ -72,9 +72,68 @@ class TestRamachandran(unittest.TestCase):
         Ramachandran.vectorise(self)
         Ramachandran.psi(self)
 
+        a = np.array([13.085,11.834,6.526]) # N_1 plane 1
+        b = np.array([13.538,10.454,6.211]) # Ca_1 plane 1 / 2
+        c = np.array([12.726,9.855,5.067]) # C_1 plane 1 / 2
+        d = np.array([12.964,8.579,4.784]) # N_2 plane 2
+        e = np.array([12.246,7.911,3.714]) # Ca_2 plane 2 / 3
+        f = np.array([12.416,6.405,3.752]) # C_2 plane 2 / 3
+        g = np.array([13.316,5.892,2.920]) # N_3 plane 2 / 3
+        h = np.array([13.573,4.458,2.859]) # Ca_3 plane 3
+        i = np.array([14.002,3.911,4.219]) # C_3 plane 3
+        # j = np.array([])
 
-        # Ramachandran.make_test_array(self, test_sample)
-        # Ramachandran.vectorise(self)
+        # test calculation of vector normal to the plane containing the points a, b, c & d
+        ab = np.array([b[0]-a[0], b[1]-a[1], b[2]-a[2]])
+        ac = np.array([c[0]-a[0], c[1]-a[1], c[2]-a[2]])
+        normal_abc = np.array([ab[1]*ac[2]-ab[2]*ac[1], ab[2]*ac[0]-ab[0]*ac[2], ab[0]*ac[1]-ab[1]*ac[0]]) # The normal to plane 1
+        bc = np.array([c[0]-b[0], c[1]-b[1], c[2]-b[2]])
+        bd = np.array([d[0]-b[0], d[1]-b[1], d[2]-b[2]])
+        normal_bcd = np.array([bc[1]*bd[2]-bc[2]*bd[1], bc[2]*bd[0]-bc[0]*bd[2], bc[0]*bd[1]-bc[1]*bd[0]]) # The normal to plane 2
+        # calculate the dihedral psi angle between planes 1 & 2
+        cos_test_numerator_1 = np.absolute((normal_abc[0]*normal_bcd[0]) + (normal_abc[1]*normal_bcd[1]) + (normal_abc[2]*normal_bcd[2]))
+        cos_test_denominator_1 = np.sqrt(normal_abc[0]**2 + normal_abc[1]**2 + normal_abc[2]**2) * np.sqrt(normal_bcd[0]**2 + normal_bcd[1]**2 + normal_bcd[2]**2)
+        cos_test_1 = -cos_test_numerator_1 / cos_test_denominator_1
+        theta_test_1 = np.arccos(cos_test_1)
+
+        # test calculation of vector normal to the plane containing the points d, e, f & g
+        de = np.array([e[0]-d[0], e[1]-d[1], e[2]-d[2]])
+        df = np.array([f[0]-d[0], f[1]-d[1], f[2]-d[2]])
+        normal_def = np.array([de[1]*df[2]-de[2]*df[1], de[2]*df[0]-de[0]*df[2], de[0]*df[1]-de[1]*df[0]]) # The normal to plane 2
+        ef = np.array([f[0]-e[0], f[1]-e[1], f[2]-e[2]])
+        eg = np.array([g[0]-e[0], g[1]-e[1], g[2]-e[2]])
+        normal_efg = np.array([ef[1]*eg[2]-ef[2]*eg[1], ef[2]*eg[0]-ef[0]*eg[2], ef[0]*eg[1]-ef[1]*eg[0]]) # The normal to plane 3
+        # calculate the dihedral psi angle between planes 1 & 2
+        cos_test_numerator_2 = np.absolute((normal_def[0]*normal_efg[0]) + (normal_def[1]*normal_efg[1]) + (normal_def[2]*normal_efg[2]))
+        cos_test_denominator_2 = np.sqrt(normal_def[0]**2 + normal_def[1]**2 + normal_def[2]**2) * np.sqrt(normal_efg[0]**2 + normal_efg[1]**2 + normal_efg[2]**2)
+        cos_test_2 = -cos_test_numerator_2 / cos_test_denominator_2
+        theta_test_2 = np.arccos(cos_test_2)
+
+        for v in self.vectors[0:4]:
+            print(v)
+        print("Normal_1: {}".format(normal_abc))
+        print("Normal_2: {}".format(normal_bcd))
+        print("Normal_3: {}".format(normal_def))
+        print("Normal_4: {}".format(normal_efg))
+
+        for p in self.psi_angle[0:2]:
+            print(p)
+        print("Theta_1: {}".format(theta_test_1))
+        print("Theta_2: {}".format(theta_test_2))
+
+        # for i in range(0,3):
+        #     self.assertEqual(self.vectors[i], normal_abc[i])
+
+        self.assertAlmostEqual(self.psi_angle[0], theta_test_1)
+        self.assertAlmostEqual(self.psi_angle[1], theta_test_2)
+        # self.assertEqual(self.vectors[2], normal_def)
+        # self.assertEqual(self.vectors[3], normal_efg)
+
+
+            # self.assertAlmostEqual(y[i], normal_2[i])
+
+
+
 
 
 def main():
