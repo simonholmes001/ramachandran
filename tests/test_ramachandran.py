@@ -2,9 +2,13 @@
 
 """Tests for `ramachandran` package."""
 
-import numpy as np
+import os
+
 import unittest
+from unittest.mock import MagicMock
+
 import numpy as np
+import pandas as pd
 from ramachandran.ramachandran import Ramachandran
 
 
@@ -24,10 +28,10 @@ class TestRamachandran(unittest.TestCase):
         R = np.array([0, -1, 2])
         S = np.array([0, 22, 2])
 
-        rama = Ramachandran()
-        x = rama.vector_norm(P, Q, R)
-        y = rama.vector_norm(Q, R, S)
-        z = rama.dihedral(x, y)
+        # rama = Ramachandran()
+        x = Ramachandran.vector_norm(self, P, Q, R)
+        y = Ramachandran.vector_norm(self, Q, R, S)
+        z = Ramachandran.dihedral(self, x, y)
 
         # test calculation of vector normal to the plane containing the points P, Q & R
         PQ = np.array([Q[0]-P[0], Q[1]-P[1], Q[2]-P[2]])
@@ -60,15 +64,23 @@ class TestRamachandran(unittest.TestCase):
 
         self.assertAlmostEqual(z[1], theta_test)
 
+    def test_002_calculate_psi(self):
+        """"""
+        test_sample = '2j5p_dihedral_matrix_.csv'
+        test_df = pd.read_csv(test_sample, header=None)
+        self.test_array = test_df[[2, 3, 4]].to_numpy() # numpy array containing only the atomic coordinate information
+        Ramachandran.vectorise(self)
+        Ramachandran.psi(self)
 
 
+        # Ramachandran.make_test_array(self, test_sample)
+        # Ramachandran.vectorise(self)
 
-    # def test_002_dot_product(self):
-    #     """Test something."""
 
 def main():
     tester = TestRamachandran()
     tester.test_001_vector_norm_dihedral()
+    tester.test_002_calculate_psi()
 
 
 if __name__ == '__main__':
