@@ -93,5 +93,5 @@ class Ramachandran:
         print(norm)
 
     def save_psi(self, walk_path, name):
-        with open(self.walk_path + '/' + self.name.split('_')[0] + '_psi', 'wb') as file:
+        with open(self.walk_path + '/' + self.name.split('_')[0] + '_psi.pickle', 'wb') as file:
             pickle.dump(self.psi_angle, file) # Save as a pickle object
