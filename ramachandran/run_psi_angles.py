@@ -1,5 +1,4 @@
 import os
-import click
 from tqdm import tqdm
 from psi_angles import PsiDihedralAngleStatistics
 
@@ -20,12 +19,12 @@ def main(psi_data_path, amino_acid_data_path):
     for root, dirs, files in os.walk(amino_acid_data_path, topdown=False):
         for name in tqdm(files):
             if 'amino' in name:
-                di = PsiDihedralAngleStatistics(psi_data_path, amino_acid_data_path, name.split('_')[0])
-                di.get_amino_acid_array()
-                di.encode()
-                di.get_psi()
-                di.check_length()
-                di.save_psi_angles()
+                psi = PsiDihedralAngleStatistics(psi_data_path, amino_acid_data_path, name.split('_')[0])
+                psi.get_amino_acid_array()
+                psi.encode()
+                psi.get_psi()
+                psi.check_length()
+                psi.save_psi_angles()
 
 if __name__ == '__main__':
     main(psi_data_path, amino_acid_data_path)
