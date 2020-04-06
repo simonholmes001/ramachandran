@@ -3,7 +3,7 @@ import pandas as pd
 import csv
 import pickle
 
-# Development of matching amino acid labels to psi angles
+# Matching amino acid labels to psi angles for each protein
 psi_data_path = '../dihedral_coordinates'
 amino_acid_data_path = '../../structure_prediction/output/final_features'
 
@@ -28,7 +28,6 @@ class PsiDihedralAngleStatistics:
         self.char_to_int = dict((c, i) for i, c in enumerate(self.alphabet))
         # int_to_char = dict((i, c) for i, c in enumerate(alphabet))
         self.amino_acid_encoded = [self.char_to_int[char] for char in self.amino_acid_list]
-        # del self.amino_acid_encoded[-1]
         return self.amino_acid_encoded
 
     def get_psi(self):
@@ -37,13 +36,9 @@ class PsiDihedralAngleStatistics:
             self.psi_array = np.array(self.psi_df)
 
     def check_length(self):
-        print("Print len before: {}".format(len(self.amino_acid_encoded)))
-        print("Print len psi: {}".format(len(self.psi_array)))
         self.delta = len(self.amino_acid_encoded) - len(self.psi_array)
         if self.delta != 0:
             del self.amino_acid_encoded[-self.delta:]
-        print("This is delta: {}".format(self.delta))
-        print("Print len after: {}".format(len(self.amino_acid_encoded)))
         return self.amino_acid_encoded
 
     def combine_amino_acid_psi(self):

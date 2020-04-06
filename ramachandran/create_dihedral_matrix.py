@@ -6,11 +6,11 @@ from tqdm import tqdm
 import argparse
 
 parser = argparse.ArgumentParser(description='To set W_PATH to the same directory that contains the coordinate data extracted from the pdb.cif files')
-parser.add_argument('-o', '--output_directory', help='An output directory must be named', required=True)
+parser.add_argument('-d', '--data_path', help='An output directory must be named', required=True)
 
 args = parser.parse_args()
 
-W_PATH = args.output_directory
+W_PATH = args.data_path
 
 class CreateDihedralMatrix:
 
@@ -36,7 +36,7 @@ class CreateDihedralMatrix:
                     dihedral_coordinates_df_4.to_csv('./' + self.walk_path  + '/' + name.split('.')[0] + '_dihedral_matrix_' + '.csv', encoding='utf-8', index=False, header=False)
 
 def main():
-    dihedral = CreateDihedralMatrix(args.output_directory)
+    dihedral = CreateDihedralMatrix(args.data_path)
     dihedral.dihedral_angles_matrix()
 
 if __name__ == '__main__':
