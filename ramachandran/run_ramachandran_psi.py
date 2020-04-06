@@ -18,7 +18,7 @@ def main(data_path):
                 test_sample = name
                 rama = Ramachandran(data_path, data_path + '/' + test_sample, name)
                 rama.make_test_array(test_sample)
-                rama.vectorise()
+                rama.vectorise_psi()
                 rama.psi()
                 rama.save_psi(data_path, name)
 
