@@ -4,8 +4,8 @@ import csv
 import pickle
 
 # Matching amino acid labels to psi angles for each protein
-psi_data_path = '../dihedral_coordinates'
-amino_acid_data_path = '../../structure_prediction/output/final_features'
+# psi_data_path = '../dihedral_coordinates'
+# amino_acid_data_path = '../../structure_prediction/output/final_features'
 
 class PsiDihedralAngleStatistics:
     def __init__(self, psi_data_path, amino_acid_data_path, name):
