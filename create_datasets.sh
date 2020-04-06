@@ -43,7 +43,7 @@ python3 ./ramachandran/create_dihedral_matrix.py -d $2
 echo Dihedral matrices created
 
 echo Preparing psi angles....
-python3 ./ramachandran/run_ramachandran.py -i $2
+python3 ./ramachandran/run_ramachandran_psi.py -i $2
 echo Psi angles extracted
 
 echo Matching psi angles and amino acid tags....
