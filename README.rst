@@ -18,6 +18,7 @@ ramachandran
 
 A project to collect statistics on dihedral angles for each amino acid in protein structures
 
+WORK IN PROGRESS
 
 * Free software: MIT license
 * Documentation: https://ramachandran.readthedocs.io.
