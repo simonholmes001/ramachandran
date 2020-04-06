@@ -28,7 +28,7 @@ class PsiDihedralAngleStatistics:
         self.char_to_int = dict((c, i) for i, c in enumerate(self.alphabet))
         # int_to_char = dict((i, c) for i, c in enumerate(alphabet))
         self.amino_acid_encoded = [self.char_to_int[char] for char in self.amino_acid_list]
-        del self.amino_acid_encoded[-1]
+        # del self.amino_acid_encoded[-1]
         return self.amino_acid_encoded
 
     def get_psi(self):
@@ -39,16 +39,26 @@ class PsiDihedralAngleStatistics:
     def check_length(self):
         print("Print len before: {}".format(len(self.amino_acid_encoded)))
         print("Print len psi: {}".format(len(self.psi_array)))
-        delta = len(self.amino_acid_encoded) - len(self.psi_array)
-        if delta != 0:
-            del self.amino_acid_encoded[-delta+1]
+        self.delta = len(self.amino_acid_encoded) - len(self.psi_array)
+        if self.delta != 0:
+            del self.amino_acid_encoded[-self.delta:]
+        print("This is delta: {}".format(self.delta))
         print("Print len after: {}".format(len(self.amino_acid_encoded)))
-        print("Print len psi: {}".format(len(self.psi_array)))
+        return self.amino_acid_encoded
 
     def combine_amino_acid_psi(self):
+        try:
             self.amino_psi_array = np.column_stack([self.amino_acid_encoded, self.psi_array])
+        except:
+            pass
+        try:
             return self.amino_psi_array
+        except:
+            pass
 
     def save_psi_angles(self):
-        with open(self.psi_data_path + '/' + self.name.split('_')[0] + '_psi_.pickle', 'wb') as file:
-            pickle.dump(self.amino_psi_array, file) # Save as a pickle object
+        try:
+            with open(self.psi_data_path + '/' + self.name.split('_')[0] + '_amino_psi_.pickle', 'wb') as file:
+                pickle.dump(self.amino_psi_array, file) # Save as a pickle object
+        except:
+            pass
