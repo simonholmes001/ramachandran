@@ -263,6 +263,7 @@ class TestRamachandran(unittest.TestCase):
         self.assertAlmostEqual(self.phi_angle[2], theta_test_6)
 
     def test_004_test_on_coordinates(self):
+        # Coordinate data from PDB entry 1a11
         z = np.array([14.402,4.670,-9.708])
         a = np.array([14.637,5.953,-9.674])
         b = np.array([13.825,6.883,-10.510])
