@@ -109,7 +109,7 @@ class Ramachandran:
 
     def phi(self):
         """
-        Calculates the psi angle between the Ci−1, Ni, and Cαi plane and the Ni, Cαi, and Ci plane.
+        Calculates the phi angle between the Ci−1, Ni, and Cαi plane and the Ni, Cαi, and Ci plane.
         :param vectors: a list of vectors normal to two consecutive points of atomic coordinates
         :return: a list of psi angles
         """
