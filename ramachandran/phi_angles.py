@@ -21,6 +21,7 @@ class PhiDihedralAngleStatistics:
             self.data = list(self.reader)
             for i in self.data:
                 self.amino_acid_list.append(i[0])
+            del self.amino_acid_list[0]
         return self.amino_acid_list
 
     def encode(self):
@@ -34,6 +35,7 @@ class PhiDihedralAngleStatistics:
         with open(self.phi_data_path + '/' + self.name + '_phi.pickle', 'rb') as labels_file:
             self.phi_df = pd.read_pickle(labels_file)
             self.phi_array = np.array(self.phi_df)
+        return self.phi_array
 
     def check_length(self):
         self.delta = len(self.amino_acid_encoded) - len(self.phi_array)

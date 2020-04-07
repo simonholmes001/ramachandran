@@ -24,6 +24,7 @@ def main(phi_data_path, amino_acid_data_path):
                 phi.encode()
                 phi.get_phi()
                 phi.check_length()
+                phi.combine_amino_acid_phi()
                 phi.save_phi_angles()
 
 if __name__ == '__main__':

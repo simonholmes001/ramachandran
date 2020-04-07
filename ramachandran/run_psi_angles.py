@@ -13,7 +13,7 @@ args = parser.parse_args()
 psi_data_path = args.input_directory
 amino_acid_data_path = args.amino_acid_input
 
-# psi_data_path = '../dihedral_coordinates'
+# psi_data_path = '../dihedral'
 # amino_acid_data_path = '../../structure_prediction/output/final_features'
 def main(psi_data_path, amino_acid_data_path):
     for root, dirs, files in os.walk(amino_acid_data_path, topdown=False):
@@ -24,6 +24,7 @@ def main(psi_data_path, amino_acid_data_path):
                 psi.encode()
                 psi.get_psi()
                 psi.check_length()
+                psi.combine_amino_acid_psi()
                 psi.save_psi_angles()
 
 if __name__ == '__main__':

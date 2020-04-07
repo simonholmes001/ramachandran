@@ -109,16 +109,16 @@ class Ramachandran:
 
     def phi(self):
         """
-        Calculates the psi angle between the Ni, Cαi, Ci plane and the Cαi, Ci, Ni+1 plane.
+        Calculates the psi angle between the Ci−1, Ni, and Cαi plane and the Ni, Cαi, and Ci plane.
         :param vectors: a list of vectors normal to two consecutive points of atomic coordinates
         :return: a list of psi angles
         """
         self.phi_input = []
         self.phi_angle = []
-        for i in range(0,len(self.vectors_phi)-2, 3):
-            self.psi_input.append(self.vectors_phi[i])
-            self.psi_input.append(self.vectors_phi[i+1])
-        for i in range(0,len(self.psi_input)-1,2):
+        for i in range(2,len(self.vectors_phi)-2, 3):
+            self.phi_input.append(self.vectors_phi[i])
+            self.phi_input.append(self.vectors_phi[i+1])
+        for i in range(0,len(self.phi_input)-1,2):
             x = self.phi_input[i]
             y = self.phi_input[i+1]
             z = Ramachandran.dihedral(self,x,y)

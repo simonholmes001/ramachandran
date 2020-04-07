@@ -34,6 +34,7 @@ class PsiDihedralAngleStatistics:
         with open(self.psi_data_path + '/' + self.name + '_psi.pickle', 'rb') as labels_file:
             self.psi_df = pd.read_pickle(labels_file)
             self.psi_array = np.array(self.psi_df)
+        return self.psi_array
 
     def check_length(self):
         self.delta = len(self.amino_acid_encoded) - len(self.psi_array)
