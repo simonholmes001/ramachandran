@@ -262,13 +262,113 @@ class TestRamachandran(unittest.TestCase):
         self.assertAlmostEqual(self.phi_angle[1], theta_test_5)
         self.assertAlmostEqual(self.phi_angle[2], theta_test_6)
 
+    def test_004_test_on_coordinates(self):
+        z = np.array([14.402,4.670,-9.708])
+        a = np.array([14.637,5.953,-9.674])
+        b = np.array([13.825,6.883,-10.510])
+        c = np.array([12.385,6.909,-9.995])
+        d = np.array([11.572,7.782,-10.525])
+        e = np.array([10.156,7.859,-10.065])
+        f = np.array([9.466,6.514,-10.300])
+        g = np.array([10.011,5.698,-11.161])
+        h = np.array([9.385,4.373,-11.430])
+        i = np.array([9.476,3.506,-10.174])
+        j = np.array([10.667,3.212,-9.730])
+        k = np.array([10.817,2.375,-8.507 ])
+        l = np.array([10.231,3.125,-7.310])
+        m = np.array([10.055,4.411,-7.436])
+        n = np.array([9.488,5.201,-6.309])
+        o = np.array([7.971,4.999,-6.259])
 
+        # Calculate psi angles
+        ab = np.array([b[0]-a[0], b[1]-a[1], b[2]-a[2]])
+        ac = np.array([c[0]-a[0], c[1]-a[1], c[2]-a[2]])
+        normal_abc = np.cross(ab,ac)
+        bc = np.array([c[0]-b[0], c[1]-b[1], c[2]-b[2]])
+        bd = np.array([d[0]-b[0], d[1]-b[1], d[2]-b[2]])
+        normal_bcd = np.cross(bc,bd)
+
+        cos_theta_1 = np.dot(normal_abc, normal_bcd) / (np.linalg.norm(normal_abc) * np.linalg.norm(normal_bcd))
+        theta_test_1 = np.arccos(cos_theta_1)
+
+        de = np.array([e[0]-d[0], e[1]-d[1], e[2]-d[2]])
+        df = np.array([f[0]-d[0], f[1]-d[1], f[2]-d[2]])
+        normal_def = np.cross(de,df)
+        ef = np.array([f[0]-e[0], f[1]-e[1], f[2]-e[2]])
+        eg = np.array([g[0]-e[0], g[1]-e[1], g[2]-e[2]])
+        normal_efg = np.cross(ef,eg)
+
+        cos_theta_2 = np.dot(normal_def, normal_efg) / (np.linalg.norm(normal_def) * np.linalg.norm(normal_efg))
+        theta_test_2 = np.arccos(cos_theta_2)
+
+        gh = np.array([h[0]-g[0], h[1]-g[1], h[2]-g[2]])
+        gi = np.array([i[0]-g[0], i[1]-g[1], i[2]-g[2]])
+        normal_ghi = np.cross(gh,gi)
+        hi = np.array([i[0]-h[0], i[1]-h[1], i[2]-h[2]])
+        hj = np.array([j[0]-h[0], j[1]-h[1], j[2]-h[2]])
+        normal_hij = np.cross(hi,hj)
+
+        cos_theta_3 = np.dot(normal_ghi, normal_hij) / (np.linalg.norm(normal_ghi) * np.linalg.norm(normal_hij))
+        theta_test_3 = np.arccos(cos_theta_3)
+
+        # Calculate phi angles (have to remove first amino acid to align amino acid to phi angle, first amino acid in a list has no phi angle)=
+        za = np.array([a[0]-z[0], a[1]-z[1], a[2]-z[2]])
+        zb = np.array([b[0]-z[0], b[1]-z[1], b[2]-z[2]])
+        normal_zab = np.cross(za,zb)
+        # de = np.array([e[0]-d[0], e[1]-d[1], e[2]-d[2]])
+        # df = np.array([f[0]-d[0], f[1]-d[1], f[2]-d[2]])
+        # normal_def = np.cross(de,df)
+
+        cos_theta_5 = np.dot(normal_zab, normal_abc) / (np.linalg.norm(normal_zab) * np.linalg.norm(normal_abc))
+        theta_test_5 = np.arccos(cos_theta_5)
+
+        cd = np.array([d[0]-c[0], d[1]-c[1], d[2]-c[2]])
+        ce = np.array([e[0]-c[0], e[1]-c[1], e[2]-c[2]])
+        normal_cde = np.cross(cd,ce)
+        de = np.array([e[0]-d[0], e[1]-d[1], e[2]-d[2]])
+        df = np.array([f[0]-d[0], f[1]-d[1], f[2]-d[2]])
+        normal_def = np.cross(de,df)
+
+        cos_theta_6 = np.dot(normal_cde, normal_def) / (np.linalg.norm(normal_cde) * np.linalg.norm(normal_def))
+        theta_test_6 = np.arccos(cos_theta_6)
+
+        fg = np.array([g[0]-f[0], g[1]-f[1], g[2]-f[2]])
+        fh = np.array([h[0]-f[0], h[1]-f[1], h[2]-f[2]])
+        normal_fgh = np.cross(fg,fh)
+        gh = np.array([h[0]-g[0], h[1]-g[1], h[2]-g[2]])
+        gi = np.array([i[0]-g[0], i[1]-g[1], i[2]-g[2]])
+        normal_ghi = np.cross(gh,gi)
+
+        cos_theta_7 = np.dot(normal_fgh, normal_ghi) / (np.linalg.norm(normal_fgh) * np.linalg.norm(normal_ghi))
+        theta_test_7 = np.arccos(cos_theta_7)
+
+        theta_test_1_deg = np.rad2deg(theta_test_1)
+        theta_test_2_deg = np.rad2deg(theta_test_2)
+        theta_test_3_deg = np.rad2deg(theta_test_3)
+        theta_test_5_deg = np.rad2deg(theta_test_5)
+        theta_test_6_deg = np.rad2deg(theta_test_6)
+        theta_test_7_deg = np.rad2deg(theta_test_7)
+
+        print("theta_1 vs psi_1: {} vs {}".format(theta_test_1_deg, 172.8))
+        print("theta_2 vs psi_2: {} vs {}".format(theta_test_2_deg, -19.4))
+        print("theta_3 vs psi_3: {} vs {}".format(theta_test_3_deg, -61.7))
+        print("theta_5 vs phi_1: {} vs {}".format(theta_test_5_deg, 67.5))
+        print("theta_6 vs phi_2: {} vs {}".format(theta_test_6_deg, -59.6))
+        print("theta_7 vs phi_3: {} vs {}".format(theta_test_7_deg, -66.4))
+
+        self.assertEqual(np.round(theta_test_1_deg, 1),172.8)
+        self.assertEqual(np.round(theta_test_2_deg, 1),-19.4*-1)
+        self.assertEqual(np.round(theta_test_3_deg, 1),-61.7*-1)
+        self.assertAlmostEqual(np.round(theta_test_5_deg, 1),67.5)
+        self.assertAlmostEqual(np.round(theta_test_6_deg, 1),-59.6*-1)
+        self.assertAlmostEqual(np.round(theta_test_7_deg, 1),-66.4*-1)
 
 def main():
     tester = TestRamachandran()
     tester.test_001_vector_norm_dihedral()
     tester.test_002_calculate_psi()
     tester.test_003_calculate_phi()
+    tester.test_004_test_on_coordinates()
 
 if __name__ == '__main__':
     main()
