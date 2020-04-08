@@ -80,9 +80,9 @@ folder containing the [protein_structure repo](https://github.com/simonholmes001
 
 To run the [protein_structure repo](https://github.com/simonholmes001/structure_prediction), run `git clone https://github.com/simonholmes001/structure_prediction.git`
 from the command line, `cd` into the repo & run the command `bash -i create_datasets.sh [YOUR_FOLDER_CONTAING_PDB_FILES] [NAME_OF_TEMPORARY_STORAGE_FOLDER]` after following
-the instructions presented in teh [README](https://github.com/simonholmes001/structure_prediction/blob/master/README.md) file.
+the instructions presented in the [README](https://github.com/simonholmes001/structure_prediction/blob/master/README.md) file.
 
-The data required for this project are located in the `structure_prediction/output/final_final_features/` folder.
+The data required for this project are the `amino-acid-tag` files, located in the `structure_prediction/output/final_final_features/` folder (see [below](#below_1)).
 
 ## <a name="Introduction"></a> Introduction
 
@@ -94,44 +94,47 @@ The data required for this project are located in the `structure_prediction/outp
 
 ### Repo Set-Up
 
-The repo should be downloaded by running <a name="below"></a>`git clone https://github.com/simonholmes001/structure_prediction.git`
-in the command line. `cd` into the newly created `structure_prediction` folder & copy
-the `standardised_features.csv` file from [above](#above) into the repo.
-Create also a folder to hold the PDB folders - in this example, this folder shall be called `pdb/`. The simplfied
-folder structure should now look like this:
+The repo should be downloaded by running `git clone https://github.com/simonholmes001/ramachandran.git`
+in the command line. `cd` into the newly created `ramachandran`.
 
+To initialise the project, this repo follows some of the sane steps as the [protein_structure repo](https://github.com/simonholmes001/structure_prediction).
+The first step is to create a folder in the main repo that holds the data to be processed, containing the folders downloaded from the PDB.
+This should give something that looks like this:
 ```
-structure_prediction
-    |- pdb/
+ramachandran
+    |- data/
     |   |- folders containting pdb.cif.gz files
-    |- structure_prediction/
+    |- ramachandran/
     |   |- scripts to run the project
     |- tests/
     |- create_datasets.sh
     |- environment.yml
     |- README.md
-    |- standardised_features.csv
 ```
 
 ### Pre-Processing
 
-To run the preprocessing phase of the project, `cd` into the repo and run the
+To run the pre-processing phase of the project, `cd` into the repo and run the
 following command from the terminal:
 
-`bash -i create_datasets.sh [YOUR_FOLDER_CONTAING_PDB_FILES] [NAME_OF_TEMPORARY_STORAGE_FOLDER]`
+`bash -i create_datasets.sh [YOUR_FOLDER_CONTAING_PDB_FILES] [NAME_OF_TEMPORARY_STORAGE_FOLDER] [PATH_TO_THE_AMINO_ACID_TAGS]`
 
 In this example, this would mean running the following command:
 
-`bash -i create_datasets.sh pdb temporary`
+`bash -i create_datasets.sh data temporary_holding_file ../path_to_amino_acid_tags`
 
-The `pdb` flag directs the script to look for the downloaded PDB files in a folder called `pdb/`.
-The `temporary` flag indicates to the script a folder location to store data temporarily.
+The `data` flag directs the script to look for the downloaded & unzipped PDB files in a folder called `data/`.
+
+The `temporary_holding_file` flag indicates to the script a folder location to store data temporarily.
+
+The <a name="below_1"></a> `path_to_aino_acid_tags` flag indicates to the scriopt the location of where you have saved the amino acid tags for the protein samples, generated
+by running the [protein_structure repo](https://github.com/simonholmes001/structure_prediction).
 
 Running this command will perform the following events:
 
 - Create a conda virtual environment for the dependencies, based on the `environment.yml` file
 - Unpacks the pdb.cif.gz files to pdb.cif files & stores the pdb.cif files in a temporary folder called `extracted_data/`
-- Deletes the `pdb/` folder to tidy folder structure & remove no longer necessary files. If you want to keep a copy of the PDB downloaded data, it is highly recommended to make a copy out of the `structure_prediction` folder as after the unpacking, the initial `pdb/` folder will get deleted to save space
+- Deletes the `data/` folder to tidy folder structure & remove no longer necessary files. If you want to keep a copy of the PDB downloaded data, it is highly recommended to do so elsewhere or on an external drive, as after the unpacking, the initial `data/` folder will get deleted to save space
 - Extracts the alpha Carbon x-, y-, z-atomic coordinate information from the pdb.cif files (for more explanations, see [TBD](#proteins))
 - Removes any empty files, such as DNA or RNA submissions
 - Creates adjacency matrices for each protein
