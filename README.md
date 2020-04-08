@@ -17,6 +17,7 @@
 - [Requirements & Pre-Requisites](#requirements)
 - [Introduction](#introduction)
 - [Set-up & Usage](#set_up)
+- [Further Background Elements](#background)
 
 ## <a name="todo"></a> To Do
 
@@ -133,44 +134,17 @@ by running the [protein_structure repo](https://github.com/simonholmes001/struct
 Running this command will perform the following events:
 
 - Create a conda virtual environment for the dependencies, based on the `environment.yml` file
-- Unpacks the pdb.cif.gz files to pdb.cif files & stores the pdb.cif files in a temporary folder called `extracted_data/`
+- Unpacks the pdb.cif.gz files to pdb.cif files & stores the pdb.cif files in a temporary folder called `extracted_data/` (`unpack_pdb_files.sh`)
 - Deletes the `data/` folder to tidy folder structure & remove no longer necessary files. If you want to keep a copy of the PDB downloaded data, it is highly recommended to do so elsewhere or on an external drive, as after the unpacking, the initial `data/` folder will get deleted to save space
-- Extracts the alpha Carbon x-, y-, z-atomic coordinate information from the pdb.cif files (for more explanations, see [TBD](#proteins))
-- Removes any empty files, such as DNA or RNA submissions
-- Creates adjacency matrices for each protein
-- Merges the adjacency matrices with the amino acid features obtained [here](#features)
-- Transfers the adjacency matrices & merged adjacency_feature matrices to a folder called `output/`
-- Deletes all of the other temporary folders
+- Extracts the x-, y-, z-atomic coordinate information from the pdb.cif files, for each atom of each amino acid (`extract_atomic_coordinate_info.sh`)
+- Removes any empty files, such as DNA or RNA submissions (`remove_empty_files.sh`)
+- Prepares a matrix of the atomic coordinates of the N, alpha-C, carbonyl-C atoms for the calculation of the dihedral angles (`create_dihedrral_matrix.py`)
+- Prepares the data for phi and psi angle calculation & defines the methods to calculate the angles (`ramachandran.py`)
+- Calculates the phi (`phi_angles.py`) & psi angles (`psi_angles>py`), in radians, for each residue for each protein, saving the outputs as pickle objects
+- [TO DO] Prepares a statistical analysis, for each amino acid, of the distribution of phi & psi angles found in the collection of proteins found in the PDB
 
-### Alpha Carbon Coordinate data
 
-### Adjacency Matrices
-
-### Amino Acid Features
-
-## Model Training
-
-### Progress
-
--[x] Pre-processing
-
--[x] Adjacency matrix
-
--[x] Save pytorch tensors as pickle objects
-
--[ ] Preprocessing on large data sets
-
--[ ] Unit tests
-
--[ ] Model development
-
--[ ] Training
-
--[ ] Hyperparameter optimization
-
--[ ] Evaluation
-
-# Background
+## <a name="background"></a> Further Background Elements
 
 The PDB curates the largest collection of experimentally determined 3D protein structures.
 
