@@ -13,13 +13,16 @@
 
 - [To Do](#todo)
 - [Objectives](#objectives)
-- [Introduction](#introduction)
-- [Requirements & Pre-Requisites](#requirements)
 - [Data Sources & Collection](#data)
+- [Requirements & Pre-Requisites](#requirements)
+- [Introduction](#introduction)
+- [Set-up & Usage](#set_up)
 
 ## <a name="todo"></a> To Do
 
 -[ ] Finish README
+
+-[ ] Update badges
 
 -[ ] Pre-processing
 
@@ -41,25 +44,8 @@
 
 ## <a name="objectives"></a> Objectives
 
-This project aims to investigate methods for the prediction of protein tertiary & quarternary structure based only on the amino acid primary sequence of the protein.
-
-To do this, physical-chemical features of amino acids are combined with adjacency matrices of the amino acid physical location in space.
-
-## <a name="Introduction"></a> Introduction
-
-
-## <a name="requirements"></a> Requirements & Pre-Requisites
-
-This project was developed in python3.7. All other requirements are installed via the creation
-of a conda virtual environment when the `create_database.sh` script is run.
-
-Other pre-requisites include running the <a name="features"></a> [amino_acid_feature_extraction repo](https://github.com/simonholmes001/amino_acid_feature_extraction) which
-includes the [pubchem_api repo](https://github.com/simonholmes001/pubchem_api).
-
-To run the [amino_acid_feature_extraction repo](https://github.com/simonholmes001/amino_acid_feature_extraction), run `git clone https://github.com/simonholmes001/amino_acid_feature_extraction.git`
-from the command line, `cd` into the repo & run the command `bash -i feature_extraction.sh`. Running
-this command will generate a number of files in a folder called `output/`. The file called <a name="above"></a>`standardised_features.csv` should be copied to the
-folder [below](#below).
+This project aims to analyse the statistical distribution of dihedral angles for each of the amino acids present in the
+protein entries of the **Protein Data Bank** [PDB](https://www.rcsb.org) (database downloaded as of Jan 2020).
 
 ## <a name="data"></a> Data Sources & Collection
 
@@ -77,16 +63,34 @@ These files contain the experimentally determined 3D coordinate structures of va
 & z-atomic coordinates, the files contain metadata explaining the experimental design, structural resolution, author information,
 and a number of other items pertaining to the 3D structure determination. The files are in a `.cif` format (Crystallographic Information File).
 
-Data should be downloaded into a folder in the main repo (see [below](#below)). A small sample of the PDB can be downloaded from [here](http://bit.ly/2Qv1seW) (use the files in the `data/` folder.
+A small sample of the PDB can be downloaded from [here](http://bit.ly/2Qv1seW).
 
-## Development
+## <a name="requirements"></a> Requirements & Pre-Requisites
 
-(Work in progress, unit tests not completed)
-To run all the tests run:
+This project was developed in python3.7. All other requirements are installed via the creation
+of a conda virtual environment when the `create_database.sh` script is run.
 
-`tox`
+Other pre-requisites include running the <a name="features"></a> [amino_acid_feature_extraction repo](https://github.com/simonholmes001/amino_acid_feature_extraction) (which
+itselfs runs scrips from the [pubchem_api repo](https://github.com/simonholmes001/pubchem_api)) & the [protein_structure repo](https://github.com/simonholmes001/structure_prediction).
 
-## Set-up & Usage
+To run the [amino_acid_feature_extraction repo](https://github.com/simonholmes001/amino_acid_feature_extraction), run `git clone https://github.com/simonholmes001/amino_acid_feature_extraction.git`
+from the command line, `cd` into the repo & run the command `bash -i feature_extraction.sh`. Running
+this command will generate a number of files in a folder called `output/`. The file called <a name="above"></a>`standardised_features.csv` should be copied to the
+folder containing the [protein_structure repo](https://github.com/simonholmes001/structure_prediction), as per the instructions in the [README](https://github.com/simonholmes001/structure_prediction/blob/master/README.md).
+
+To run the [protein_structure repo](https://github.com/simonholmes001/structure_prediction), run `git clone https://github.com/simonholmes001/structure_prediction.git`
+from the command line, `cd` into the repo & run the command `bash -i create_datasets.sh [YOUR_FOLDER_CONTAING_PDB_FILES] [NAME_OF_TEMPORARY_STORAGE_FOLDER]` after following
+the instructions presented in teh [README](https://github.com/simonholmes001/structure_prediction/blob/master/README.md) file.
+
+The data required for this project are located in the `structure_prediction/output/final_final_features/` folder.
+
+## <a name="Introduction"></a> Introduction
+
+### Dihedral (Torsion) Angles
+
+
+
+## <a name="set_up"></a> Set-up & Usage
 
 ### Repo Set-Up
 
