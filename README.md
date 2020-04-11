@@ -17,7 +17,7 @@
 - [Objectives](#objectives)
 - [Data Sources & Collection](#data)
 - [Requirements & Pre-Requisites](#requirements)
-- [Introduction](#introduction)
+- [Background Information](#info)
 - [Set-up & Usage](#set_up)
 - [Further Background Elements](#background)
 
@@ -35,15 +35,9 @@
 
 -[ ] Preprocessing on large data sets
 
--[ ] Unit tests
+-[X] Unit tests
 
--[ ] Model development
-
--[ ] Training
-
--[ ] Hyperparameter optimization
-
--[ ] Evaluation
+-[ ] Development of statistical models for angle analysis
 
 ## <a name="objectives"></a> Objectives
 
@@ -87,11 +81,49 @@ the instructions presented in the [README](https://github.com/simonholmes001/str
 
 The data required for this project are the `amino-acid-tag` files, located in the `structure_prediction/output/final_final_features/` folder (see [below](#below_1)).
 
-## <a name="Introduction"></a> Introduction
+## <a name="info"></a> Background Information
 
 ### Dihedral (Torsion) Angles
 
+#### Reference material
+See:
+- https://byjus.com/maths/dihedral-angle/
+- http://tutorial.math.lamar.edu/Classes/CalcIII/EqnsOfPlanes.aspx
+- http://www.math24.net/plane
+- http://www.maths.usyd.edu.au/u/MOW/vectors/vectors-13/v-13-2.html
+- http://guweb2.gonzaga.edu/faculty/cronk/CHEM440pub/dihedral.html
 
+#### Definition
+
+The angle formed between two planes that intersect is called a dihedral angle.
+Formally, it is the angle formed between vectors that are normal to each plane.
+And if we have two points that lie in the same plane, then the vector normal to that
+plane can be calculated using the cross product between the two vectors. Subsequently,
+the angle between two normal vectors can be calculated from the dot product of the two
+normal vectors. This angle corresponds to the dihedral angle between the two planes.
+
+#### Torsion angles in proteins
+
+See: https://www.open.edu/openlearn/science-maths-technology/science/biology/proteins/content-section-1.2
+
+Due to the delocalisation of the lone pair of electrons on the nitrogen atom of the peptide bond,
+peptide bonds display partial double bond character. This in turn, significantly restricts rotation around the
+carboxyl carbon atom of amino acid N & the nitrogen atom of amino acid N+1, making the peptide bond essentially planar.
+
+In addition to restricting rotation, the partial double bond character of the peptide bond means that the alpha carbon, carboxyl carbon
+of amino acid N & the nitrogen & alpha carbon atoms of amino acid N+1 lie in the same plane.
+
+However, there is no restriction to rotation around the two bonds on either side of the peptide bond. Hence rotation can freely occur
+around the nitrogen - alpha carbon bond & around the alpha carbon - carboxly carbon bond. These rotations hence rotate the planes
+formed by the atoms & themselves give rise to dihedral or torsion angles for each amino acid.
+
+Rotation around the nitrogen - alpha carbon bond is measured as the phi angle & rotation around the alpha carbon - carboxyl carbon
+bond is measured as the psi angle.
+
+Hence, the φ angle is computed between the normal to the plane made by three atoms Ci−1, Ni, and Cαi &
+the normal to the plane made by the three atoms Ni, Cαi, and Ci.
+
+The ψ angle is calculated between the normals made by the Ni, Cαi, Ci plane and the Cαi, Ci, Ni+1 plane.
 
 ## <a name="set_up"></a> Set-up & Usage
 
@@ -145,6 +177,9 @@ Running this command will perform the following events:
 - Calculates the phi (`phi_angles.py`) & psi angles (`psi_angles>py`), in radians, for each residue for each protein, saving the outputs as pickle objects
 - [TO DO] Prepares a statistical analysis, for each amino acid, of the distribution of phi & psi angles found in the collection of proteins found in the PDB
 
+### Unit Testing
+
+The repo was tested on PDB entry 1a11 & test data is available in the `/tests/` folder. Phi & psi angles were compared to angles from here: https://stackoverflow.com/questions/25355401/getting-all-dihedral-angles-in-pymol
 
 ## <a name="background"></a> Further Background Elements
 
