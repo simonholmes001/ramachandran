@@ -24,13 +24,21 @@
 ## <a name="todo"></a> To Do
 
 -[ ] Finish README
+
 -[ ] Update badges
+
 -[ ] Correct phi & pis angles to be in the range [-pi, pi]
+
 -[ ] Write scripts for statistical analysis of the phi & psi angles of the PDB collection
+
 -[x] Unit tests
+
 -[ ] Packaging of project to conda
+
 -[ ] Packaging of project to pypi
+
 -[ ] Packaging of project to docker
+
 -[ ] Write script to draw Ramachandran plots for each amino acid
 
 ## <a name="objectives"></a> Objectives
