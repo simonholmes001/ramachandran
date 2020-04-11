@@ -24,25 +24,22 @@
 ## <a name="todo"></a> To Do
 
 -[ ] Finish README
-
 -[ ] Update badges
-
--[ ] Pre-processing
-
--[ ] Adjacency matrix
-
--[ ] Save pytorch tensors as pickle objects
-
--[ ] Preprocessing on large data sets
-
--[X] Unit tests
-
--[ ] Development of statistical models for angle analysis
+-[ ] Correct phi & pis angles to be in the range [-pi, pi]
+-[ ] Write scripts for statistical analysis of the phi & psi angles of the PDB collection
+-[x] Unit tests
+-[ ] Packaging of project to conda
+-[ ] Packaging of project to pypi
+-[ ] Packaging of project to docker
+-[ ] Write script to draw Ramachandran plots for each amino acid
 
 ## <a name="objectives"></a> Objectives
 
 This project aims to analyse the statistical distribution of dihedral angles for each of the amino acids present in the
 protein entries of the **Protein Data Bank** [PDB](https://www.rcsb.org) (database downloaded as of Jan 2020).
+
+The project is named after [G.N. Ramachandran FRS](https://en.wikipedia.org/wiki/G._N._Ramachandran), who developed the Ramachandran Plot to analyse the distribution of torsion
+angles in protein structures.
 
 ## <a name="data"></a> Data Sources & Collection
 
@@ -92,6 +89,7 @@ See:
 - http://www.math24.net/plane
 - http://www.maths.usyd.edu.au/u/MOW/vectors/vectors-13/v-13-2.html
 - http://guweb2.gonzaga.edu/faculty/cronk/CHEM440pub/dihedral.html
+- https://youtu.be/NSU0OnW9yLk
 
 #### Definition
 
@@ -136,6 +134,8 @@ A conformational plot of ɸ against ψ for a particular residue or protein is kn
 The values of ɸ and ψ in a Ramachandran plot range, as per convention, from −180º to +180º.
 
 ![](./ramachandran.jpg)
+
+
 
 ## <a name="set_up"></a> Set-up & Usage
 
