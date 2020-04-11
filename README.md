@@ -9,8 +9,6 @@
 
 * MIT license
 
-[WORK IN PROGRESS]
-
 # Contents
 
 - [To Do](#todo)
@@ -23,7 +21,7 @@
 
 ## <a name="todo"></a> To Do
 
--[ ] Finish README
+-[x] Finish README
 
 -[ ] Update badges
 
@@ -44,7 +42,7 @@
 ## <a name="objectives"></a> Objectives
 
 This project aims to analyse the statistical distribution of dihedral angles for each of the amino acids present in the
-protein entries of the **Protein Data Bank** [PDB](https://www.rcsb.org) (database downloaded as of Jan 2020).
+protein entries of the **Protein Data Bank** [PDB](https://www.rcsb.org) (database downloaded as of Jan 2020; conditions as of January 2020).
 
 The project is named after [G.N. Ramachandran FRS](https://en.wikipedia.org/wiki/G._N._Ramachandran), who developed the Ramachandran Plot to analyse the distribution of torsion
 angles in protein structures.
@@ -76,13 +74,19 @@ Other pre-requisites include running the <a name="features"></a> [amino_acid_fea
 itselfs runs scrips from the [pubchem_api repo](https://github.com/simonholmes001/pubchem_api)) & the [protein_structure repo](https://github.com/simonholmes001/structure_prediction).
 
 To run the [amino_acid_feature_extraction repo](https://github.com/simonholmes001/amino_acid_feature_extraction), run `git clone https://github.com/simonholmes001/amino_acid_feature_extraction.git`
-from the command line, `cd` into the repo & run the command `bash -i feature_extraction.sh`. Running
-this command will generate a number of files in a folder called `output/`. The file called <a name="above"></a>`standardised_features.csv` should be copied to the
+from the command line, `cd` into the repo & run the command
+
+ `bash -i feature_extraction.sh`
+
+Running this command will generate a number of files in a folder called `output/`. The file called <a name="above"></a>`standardised_features.csv` should be copied to the
 folder containing the [protein_structure repo](https://github.com/simonholmes001/structure_prediction), as per the instructions in the [README](https://github.com/simonholmes001/structure_prediction/blob/master/README.md).
 
 To run the [protein_structure repo](https://github.com/simonholmes001/structure_prediction), run `git clone https://github.com/simonholmes001/structure_prediction.git`
-from the command line, `cd` into the repo & run the command `bash -i create_datasets.sh [YOUR_FOLDER_CONTAING_PDB_FILES] [NAME_OF_TEMPORARY_STORAGE_FOLDER]` after following
-the instructions presented in the [README](https://github.com/simonholmes001/structure_prediction/blob/master/README.md) file.
+from the command line, `cd` into the repo & run the command
+
+`bash -i create_datasets.sh [YOUR_FOLDER_CONTAING_PDB_FILES] [NAME_OF_TEMPORARY_STORAGE_FOLDER]`
+
+after following the instructions presented in the [README](https://github.com/simonholmes001/structure_prediction/blob/master/README.md) file.
 
 The data required for this project are the `amino-acid-tag` files, located in the `structure_prediction/output/final_final_features/` folder (see [below](#below_1)).
 
@@ -200,6 +204,16 @@ Running this command will perform the following events:
 ### Unit Testing
 
 The repo was tested on PDB entry 1a11 & test data is available in the `/tests/` folder. Phi & psi angles were compared to angles from here: https://stackoverflow.com/questions/25355401/getting-all-dihedral-angles-in-pymol
+
+## Statistical Analysis
+
+## Packaging
+
+### Conda
+
+### Pypi
+
+### Docker
 
 ## <a name="background"></a> Further Background Elements
 
