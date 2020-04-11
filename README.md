@@ -110,7 +110,7 @@ Due to the delocalisation (resonance) of the lone pair of electrons on the nitro
 peptide bonds display partial double bond character. This in turn, significantly restricts rotation around the
 carboxyl carbon atom of amino acid N & the nitrogen atom of amino acid N+1, making the peptide bond essentially planar (see below).
 
-![](/home/simon/Downloads/peptide_bond.jpg)
+![](./peptide_bond.jpg)
 
 In addition to restricting rotation, the partial double bond character of the peptide bond means that the alpha carbon, carboxyl carbon
 of amino acid N & the nitrogen & alpha carbon atoms of amino acid N+1 lie in the same plane.
@@ -127,7 +127,7 @@ the normal to the plane made by the three atoms Ni, Cαi, and Ci.
 
 The ψ angle is calculated between the normals made by the Ni, Cαi, Ci plane and the Cαi, Ci, Ni+1 plane.
 
-![](/home/simon/Downloads/peptide_bond_angles.jpg)
+![](./peptide_bond_angles.jpg)
 
 Due to steric constraints of the amino acid side chains - amino acids are mostly found in the *trans* configuration - not all values of phi & psi are allowed.
 As a result of these steric constraints, only certain values of ɸ and ψ, and hence conformations of the peptide, are permitted whilst others are not.
@@ -139,7 +139,7 @@ It is possible to calculate these permitted values for a given residue in the co
 
 Notice that the values of ɸ and ψ in Figure 5 range from −180º to +180º. Turning the peptide group through 360º will of course bring it back to its starting position, and −180º and +180º correspond to the same position. Thus the green strip at the bottom left corner of the plot in Figure 5 is contiguous with the field at the top left corner.
 
-![](/home/simon/Downloads/ramachandran.jpg)
+![](./ramachandran.jpg)
 
 
 
