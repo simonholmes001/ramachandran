@@ -106,9 +106,11 @@ normal vectors. This angle corresponds to the dihedral angle between the two pla
 
 See: https://www.open.edu/openlearn/science-maths-technology/science/biology/proteins/content-section-1.2
 
-Due to the delocalisation of the lone pair of electrons on the nitrogen atom of the peptide bond,
+Due to the delocalisation (resonance) of the lone pair of electrons on the nitrogen atom of the peptide bond,
 peptide bonds display partial double bond character. This in turn, significantly restricts rotation around the
-carboxyl carbon atom of amino acid N & the nitrogen atom of amino acid N+1, making the peptide bond essentially planar.
+carboxyl carbon atom of amino acid N & the nitrogen atom of amino acid N+1, making the peptide bond essentially planar (see below).
+
+![](/home/simon/Downloads/peptide_bond.jpg)
 
 In addition to restricting rotation, the partial double bond character of the peptide bond means that the alpha carbon, carboxyl carbon
 of amino acid N & the nitrogen & alpha carbon atoms of amino acid N+1 lie in the same plane.
@@ -124,6 +126,22 @@ Hence, the φ angle is computed between the normal to the plane made by three at
 the normal to the plane made by the three atoms Ni, Cαi, and Ci.
 
 The ψ angle is calculated between the normals made by the Ni, Cαi, Ci plane and the Cαi, Ci, Ni+1 plane.
+
+![](/home/simon/Downloads/peptide_bond_angles.jpg)
+
+Due to steric constraints of the amino acid side chains - amino acids are mostly found in the *trans* configuration - not all values of phi & psi are allowed.
+As a result of these steric constraints, only certain values of ɸ and ψ, and hence conformations of the peptide, are permitted whilst others are not.
+
+It is possible to calculate these permitted values for a given residue in the context of a polypeptide. This calculation is performed by first determining the distances between all the non-bonding atoms in two neighbouring peptide groups (such as those in Figure 4) at all the possible values of ɸ and ψ. It is most readily done for a polypeptide containing just one kind of amino acid. A conformational plot of ɸ against ψ for a particular residue is known as a Ramachandran plot (after its inventor, G. N. Ramachandran). Such a plot allows us to identify those conformations (i.e. for a particular value of ɸ and ψ) that are sterically favourable or unfavourable (as in Figure 5), according to the following criteria:
+- Where there is no conflict between the van der Waals radii of non-bonding atoms, a conformation is ‘allowed'
+- Conformations requiring interatomic distances at the limit of that which is permissible are defined as ‘outer limit’ conformations
+- Theoretical conformations that require any two non-bonding atoms to be closer to each other than their van der Waals radii allow are sterically ‘forbidden’
+
+Notice that the values of ɸ and ψ in Figure 5 range from −180º to +180º. Turning the peptide group through 360º will of course bring it back to its starting position, and −180º and +180º correspond to the same position. Thus the green strip at the bottom left corner of the plot in Figure 5 is contiguous with the field at the top left corner.
+
+![](/home/simon/Downloads/ramachandran.jpg)
+
+
 
 ## <a name="set_up"></a> Set-up & Usage
 
