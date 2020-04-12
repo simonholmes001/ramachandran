@@ -61,7 +61,7 @@ class TestRamachandran(unittest.TestCase):
 
     def test_002_calculate_psi(self):
         """"""
-        test_sample = '2j5p_dihedral_matrix_.csv'
+        test_sample = './2j5p_dihedral_matrix_.csv'
         test_df = pd.read_csv(test_sample, header=None)
         self.test_array = test_df[[2, 3, 4]].to_numpy() # numpy array containing only the atomic coordinate information
         Ramachandran.vectorise_psi(self)
@@ -163,7 +163,7 @@ class TestRamachandran(unittest.TestCase):
 
     def test_003_calculate_phi(self):
         """"""
-        test_sample = '2j5p_dihedral_matrix_.csv'
+        test_sample = './2j5p_dihedral_matrix_.csv'
         test_df = pd.read_csv(test_sample, header=None)
         self.test_array = test_df[[2, 3, 4]].to_numpy() # numpy array containing only the atomic coordinate information
         Ramachandran.vectorise_phi(self)
