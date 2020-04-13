@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-# Script to prepare data for protein folding prediction studies
+# Script to prepare data for analysing dihedral angles in the PDB protein population
+
+# Need to include the following cmd arguments: $1 -> folder containing the pdb.cif files;
+# $2 -> storage location for the dihedral_extracted data; $3 -> location of amino acid tags
 
 # Check for required arguments
-if [ $# -ne 2 ]; then
-    echo "usage: $0 You must enter the folder name of the pdb data AND the location of the coordinate files as arguments" 1>&2
+if [ $# -ne 3 ]; then
+    echo "usage: $0 You must enter the folder name of the pdb data AND the location of the coordinate files as arguments" 1>&3
     echo Exiting script...
     exit 1
 fi
@@ -36,31 +39,36 @@ bash ./ramachandran/remove_empty_files.sh $2
 echo Clean-up completed
 
 echo Preparing dihedral matrix. This will take some time...
-python3 ./ramachandran/create_dihedral_matrix.py -o $2
-echo Distance maps created
-#
-#echo Merging with amino acid features. This could stake some time....
-#python3 ./ramachandran/merge_aaFeatures_adjacency_matrix.py -o $2
-#echo Merge completed
-#
-## Create the output folder and transfer files there
-#mkdir ./output
-#cd output && mkdir ./adjacency_matrix
-#mkdir ./final_features
-#mkdir ./pickle
-#
-#cd ../$2
-#mv *adjacency*.csv ../output/adjacency_matrix
-#mv *amino*.csv ../output/final_features
-#mv *.npy ../output/final_features
-#mv *_label ../output/pickle
-#mv *_feature ../output/pickle
-#cd ../
-#rm -rf ./$2
-#rm -rf ./extracted_data
-#
+python3 ./ramachandran/create_dihedral_matrix.py -d $2
+echo Dihedral matrices created
+
+echo Preparing psi angles....
+python3 ./ramachandran/run_ramachandran_psi.py -i $2
+echo Psi angles extracted
+
+echo Matching psi angles and amino acid tags....
+python3 ./ramachandran/run_psi_angles.py -i $2 -a $3
+echo Psi angles and amino acid tags merged
+
+echo Preparing phi angles....
+python3 ./ramachandran/run_ramachandran_phi.py -i $2
+echo Phi angles extracted
+
+echo Matching phi angles and amino acid tags....
+python3 ./ramachandran/run_phi_angles.py -i $2 -a $3
+echo Phi angles and amino acid tags merged
+
+ Create the output folder and transfer files there
+mkdir ./output
+
+cd ./$2
+mv *_amino_* ../output/
+cd ../
+rm -rf ./$2
+rm -rf ./extracted_data
+
 conda deactivate
 
 echo All files have been processed
 echo
-echo Script completed. You can now start training the model.
+echo Script completed.

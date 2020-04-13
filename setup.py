@@ -10,7 +10,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [ ]
+requirements = ['pandas', 'numpy']
 
 setup_requirements = [ ]
 
@@ -25,9 +25,6 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
@@ -49,5 +46,4 @@ setup(
     tests_require=test_requirements,
     url='https://github.com/simonholmes001/ramachandran',
     version='0.1.0',
-    zip_safe=False,
 )
