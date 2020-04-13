@@ -45,20 +45,20 @@ echo Dihedral matrices created
 echo Preparing psi angles....
 python3 ./ramachandran/run_ramachandran_psi.py -i $2
 echo Psi angles extracted
-
+#
 echo Matching psi angles and amino acid tags....
 python3 ./ramachandran/run_psi_angles.py -i $2 -a $3
 echo Psi angles and amino acid tags merged
-
+#
 echo Preparing phi angles....
 python3 ./ramachandran/run_ramachandran_phi.py -i $2
 echo Phi angles extracted
-
+#
 echo Matching phi angles and amino acid tags....
 python3 ./ramachandran/run_phi_angles.py -i $2 -a $3
 echo Phi angles and amino acid tags merged
 
- Create the output folder and transfer files there
+# Create the output folder and transfer files there
 mkdir ./output
 
 cd ./$2
@@ -70,5 +70,4 @@ rm -rf ./extracted_data
 conda deactivate
 
 echo All files have been processed
-echo
 echo Script completed.

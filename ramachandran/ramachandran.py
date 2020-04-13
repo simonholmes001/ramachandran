@@ -40,9 +40,18 @@ class Ramachandran:
         :param y: numpy array of coordinates for vector #2
         :return: the cosine of the dihedral angle between the two vectors & the dihedral angle itself in radians
         """
-        cos_theta = np.dot(x, y) / (np.linalg.norm(x) * np.linalg.norm(y))
-        theta = np.arccos(cos_theta)
-        return cos_theta, theta # Outputs the angle theta in radians
+        try:
+            cos_theta = np.dot(x, y) / (np.linalg.norm(x) * np.linalg.norm(y))
+        except:
+            pass
+        try:
+            theta = np.arccos(cos_theta)
+        except:
+            pass
+        try:
+            return cos_theta, theta # Outputs the angle theta in radians
+        except:
+            pass
 
     def make_test_array(self, test_sample):
         """
@@ -50,9 +59,15 @@ class Ramachandran:
         :param test_sample: a pandas dataframe
         :return: a numpy array
         """
-        self.test_df = pd.read_csv(self.test_sample, header=None)
-        self.test_array = self.test_df[[2, 3, 4]].to_numpy() # numpy array containing only the atomic coordinate information
-        return self.test_array
+        try:
+            self.test_df = pd.read_csv(self.test_sample, header=None)
+            self.test_array = self.test_df[[2, 3, 4]].to_numpy() # numpy array containing only the atomic coordinate information
+        except:
+            pass
+        try:
+            return self.test_array
+        except:
+            pass
 
     def vectorise_psi(self):
         """
@@ -61,13 +76,19 @@ class Ramachandran:
         :return: a list of vectors normal to two consecutive points of atomic coordinates
         """
         self.vectors_psi = []
-        for i in range(0,len(self.test_array)-2,1):
-            p = np.array([self.test_array[i][0], self.test_array[i][1], self.test_array[i][2]])
-            q = np.array([self.test_array[i+1][0], self.test_array[i+1][1], self.test_array[i+1][2]])
-            r = np.array([self.test_array[i+2][0], self.test_array[i+2][1], self.test_array[i+2][2]])
-            x = Ramachandran.vector_norm(self, p, q, r)
-            self.vectors_psi.append(x)
-        return self.vectors_psi
+        try:
+            for i in range(0,len(self.test_array)-2,1):
+                p = np.array([self.test_array[i][0], self.test_array[i][1], self.test_array[i][2]])
+                q = np.array([self.test_array[i+1][0], self.test_array[i+1][1], self.test_array[i+1][2]])
+                r = np.array([self.test_array[i+2][0], self.test_array[i+2][1], self.test_array[i+2][2]])
+                x = Ramachandran.vector_norm(self, p, q, r)
+                self.vectors_psi.append(x)
+        except:
+            pass
+        try:
+            return self.vectors_psi
+        except:
+            pass
 
     def psi(self):
         """
@@ -89,8 +110,8 @@ class Ramachandran:
         return self.psi_angle
 
     def save_psi(self, walk_path, name):
-        with open(self.walk_path + '/' + self.name.split('_')[0] + '_psi.pickle', 'wb') as file:
-            pickle.dump(self.psi_angle, file) # Save as a pickle object
+        with open(self.walk_path + '/' + self.name.split('_')[0] + '_psi.pickle', 'wb', buffering=500000000) as file:
+            pickle.dump(self.psi_angle, file, protocol=4) # Save as a pickle object
 
     def vectorise_phi(self):
         """
@@ -99,13 +120,19 @@ class Ramachandran:
         :return: a list of vectors normal to two consecutive points of atomic coordinates
         """
         self.vectors_phi = []
-        for i in range(0,len(self.test_array)-2,1):
-            p = np.array([self.test_array[i][0], self.test_array[i][1], self.test_array[i][2]])
-            q = np.array([self.test_array[i+1][0], self.test_array[i+1][1], self.test_array[i+1][2]])
-            r = np.array([self.test_array[i+2][0], self.test_array[i+2][1], self.test_array[i+2][2]])
-            x = Ramachandran.vector_norm(self, p, q, r)
-            self.vectors_phi.append(x)
-        return self.vectors_phi
+        try:
+            for i in range(0,len(self.test_array)-2,1):
+                p = np.array([self.test_array[i][0], self.test_array[i][1], self.test_array[i][2]])
+                q = np.array([self.test_array[i+1][0], self.test_array[i+1][1], self.test_array[i+1][2]])
+                r = np.array([self.test_array[i+2][0], self.test_array[i+2][1], self.test_array[i+2][2]])
+                x = Ramachandran.vector_norm(self, p, q, r)
+                self.vectors_phi.append(x)
+        except:
+            pass
+        try:
+            return self.vectors_phi
+        except:
+            pass
 
     def phi(self):
         """
@@ -127,5 +154,5 @@ class Ramachandran:
         return self.phi_angle
 
     def save_phi(self, walk_path, name):
-        with open(self.walk_path + '/' + self.name.split('_')[0] + '_phi.pickle', 'wb') as file:
-            pickle.dump(self.phi_angle, file) # Save as a pickle object
+        with open(self.walk_path + '/' + self.name.split('_')[0] + '_phi.pickle', 'wb', buffering=500000000) as file:
+            pickle.dump(self.phi_angle, file, protocol=4) # Save as a pickle object

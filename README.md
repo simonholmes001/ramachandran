@@ -120,7 +120,7 @@ Due to the delocalisation (resonance) of the lone pair of electrons on the nitro
 peptide bonds display partial double bond character. This in turn, significantly restricts rotation around the
 carboxyl carbon atom of amino acid N & the nitrogen atom of amino acid N+1, making the peptide bond essentially planar (see below).
 
-![](./peptide_bond.jpg)
+![](./img/peptide_bond.jpg)
 
 In addition to restricting rotation, the partial double bond character of the peptide bond means that the alpha carbon, carboxyl carbon
 of amino acid N & the nitrogen & alpha carbon atoms of amino acid N+1 lie in the same plane.
@@ -137,7 +137,7 @@ the normal to the plane made by the three atoms Ni, Cαi, and Ci.
 
 The ψ angle is calculated between the normals made by the Ni, Cαi, Ci plane and the Cαi, Ci, Ni+1 plane.
 
-![](./peptide_bond_angles.jpg)
+![](./img/peptide_bond_angles.jpg)
 
 Due to steric constraints of the amino acid side chains - amino acids are mostly found in the *trans* configuration - not all values of phi & psi are allowed.
 As a result of these steric constraints, only certain values of ɸ and ψ, and hence conformations of the peptide, are permitted whilst others are not.
@@ -145,7 +145,7 @@ As a result of these steric constraints, only certain values of ɸ and ψ, and h
 A conformational plot of ɸ against ψ for a particular residue or protein is known as a Ramachandran plot (after its inventor, G. N. Ramachandran).
 The values of ɸ and ψ in a Ramachandran plot range, as per convention, from −180º to +180º.
 
-![](./ramachandran.jpg)
+![](./img/ramachandran.jpg)
 
 
 

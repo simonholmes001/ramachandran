@@ -16,31 +16,55 @@ class PsiDihedralAngleStatistics:
     def get_amino_acid_array(self):
         """Extracts the amino acid sequence from the _tag data"""
         self.amino_acid_list = []
-        with open(self.amino_acid_data_path +'/' + self.name + '_amino_acid_tag_.csv', newline='') as f:
-            self.reader = csv.reader(f)
-            self.data = list(self.reader)
-            for i in self.data:
-                self.amino_acid_list.append(i[0])
-        return self.amino_acid_list
+        try:
+            with open(self.amino_acid_data_path +'/' + self.name + '_amino_acid_tag_.csv', newline='') as f:
+                self.reader = csv.reader(f)
+                self.data = list(self.reader)
+                for i in self.data:
+                    self.amino_acid_list.append(i[0])
+        except:
+            pass
+        try:
+            return self.amino_acid_list
+        except:
+            pass
 
     def encode(self):
         self.alphabet = 'ALA','ARG','ASN','ASP','CYS','GLN','GLU','GLY','HIS','ILE','LEU','LYS','MET','PHE','PRO','SER','THR','TRP','TYR','VAL', 'SEC', 'PYL', 'UNK'
         self.char_to_int = dict((c, i) for i, c in enumerate(self.alphabet))
         # int_to_char = dict((i, c) for i, c in enumerate(alphabet))
-        self.amino_acid_encoded = [self.char_to_int[char] for char in self.amino_acid_list]
-        return self.amino_acid_encoded
+        try:
+            self.amino_acid_encoded = [self.char_to_int[char] for char in self.amino_acid_list]
+        except:
+            pass
+        try:
+            return self.amino_acid_encoded
+        except:
+            pass
 
     def get_psi(self):
-        with open(self.psi_data_path + '/' + self.name + '_psi.pickle', 'rb') as labels_file:
-            self.psi_df = pd.read_pickle(labels_file)
-            self.psi_array = np.array(self.psi_df)
-        return self.psi_array
+        try:
+            with open(self.psi_data_path + '/' + self.name + '_psi.pickle', 'rb') as labels_file:
+                self.psi_df = pd.read_pickle(labels_file)
+                self.psi_array = np.array(self.psi_df)
+        except:
+            pass
+        try:
+            return self.psi_array
+        except:
+            pass
 
     def check_length(self):
-        self.delta = len(self.amino_acid_encoded) - len(self.psi_array)
-        if self.delta != 0:
-            del self.amino_acid_encoded[-self.delta:]
-        return self.amino_acid_encoded
+        try:
+            self.delta = len(self.amino_acid_encoded) - len(self.psi_array)
+            if self.delta != 0:
+                del self.amino_acid_encoded[-self.delta:]
+        except:
+            pass
+        try:
+            return self.amino_acid_encoded
+        except:
+            pass
 
     def combine_amino_acid_psi(self):
         try:

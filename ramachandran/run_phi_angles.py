@@ -16,9 +16,9 @@ amino_acid_data_path = args.amino_acid_input
 # psi_data_path = '../dihedral_coordinates'
 # amino_acid_data_path = '../../structure_prediction/output/final_features'
 def main(phi_data_path, amino_acid_data_path):
-    for root, dirs, files in os.walk(amino_acid_data_path, topdown=False):
+    for root, dirs, files in os.walk(phi_data_path, topdown=False):
         for name in tqdm(files):
-            if 'amino' in name:
+            if 'phi' in name:
                 phi = PhiDihedralAngleStatistics(phi_data_path, amino_acid_data_path, name.split('_')[0])
                 phi.get_amino_acid_array()
                 phi.encode()
@@ -29,6 +29,3 @@ def main(phi_data_path, amino_acid_data_path):
 
 if __name__ == '__main__':
     main(phi_data_path, amino_acid_data_path)
-
-
-
