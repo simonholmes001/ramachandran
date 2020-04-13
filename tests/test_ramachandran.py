@@ -10,6 +10,8 @@ from ramachandran.ramachandran import Ramachandran
 
 class TestRamachandran(unittest.TestCase):
     """Tests for `ramachandran` package."""
+    def __init__(self, test_sample):
+        self.test_sample = test_sample
 
     def setUp(self):
         """Set up test fixtures, if any."""
@@ -61,8 +63,8 @@ class TestRamachandran(unittest.TestCase):
 
     def test_002_calculate_psi(self):
         """"""
-        test_sample = './2j5p_dihedral_matrix_.csv'
-        test_df = pd.read_csv(test_sample, header=None)
+        # test_sample = './2j5p_dihedral_matrix_.csv'
+        test_df = pd.read_csv(self.test_sample, header=None)
         self.test_array = test_df[[2, 3, 4]].to_numpy() # numpy array containing only the atomic coordinate information
         Ramachandran.vectorise_psi(self)
         Ramachandran.psi(self)
@@ -163,8 +165,8 @@ class TestRamachandran(unittest.TestCase):
 
     def test_003_calculate_phi(self):
         """"""
-        test_sample = './2j5p_dihedral_matrix_.csv'
-        test_df = pd.read_csv(test_sample, header=None)
+        # test_sample = './2j5p_dihedral_matrix_.csv'
+        test_df = pd.read_csv(self.test_sample, header=None)
         self.test_array = test_df[[2, 3, 4]].to_numpy() # numpy array containing only the atomic coordinate information
         Ramachandran.vectorise_phi(self)
         Ramachandran.phi(self)
@@ -365,7 +367,7 @@ class TestRamachandran(unittest.TestCase):
         self.assertAlmostEqual(np.round(theta_test_7_deg, 1),-66.4*-1)
 
 def main():
-    tester = TestRamachandran()
+    tester = TestRamachandran('./2j5p_dihedral_matrix_.csv')
     tester.test_001_vector_norm_dihedral()
     tester.test_002_calculate_psi()
     tester.test_003_calculate_phi()
