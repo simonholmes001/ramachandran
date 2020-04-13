@@ -5,7 +5,4 @@ dependencies:
     - python=3.7
     - numpy
     - pandas
-    - scipy
     - tqdm
-    - pytorch
-    - cudatoolkit=10.1
