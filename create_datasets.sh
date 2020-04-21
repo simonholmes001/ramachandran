@@ -13,6 +13,7 @@ if [ $# -ne 3 ]; then
 fi
 
 # Preparation of a virtual environment
+# Commented out when running massive batch processing
 echo Creating virtual environment for data preparation...
 ENV=$(cat ./environment.yml | grep name | cut -f 2 -d ':')
 conda update -n base conda # to update to latest version of conda

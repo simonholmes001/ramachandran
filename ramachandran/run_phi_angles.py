@@ -1,4 +1,5 @@
 import os
+import concurrent.futures
 from tqdm import tqdm
 from phi_angles import PhiDihedralAngleStatistics
 
