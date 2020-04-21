@@ -62,7 +62,7 @@ echo Phi angles and amino acid tags merged
 # Create the output folder and transfer files there
 mkdir ./output
 
-cd ./$2
+cd ./$2git co
 mv *_amino_* ../output/
 cd ../
 rm -rf ./$2
