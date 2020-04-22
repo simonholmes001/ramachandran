@@ -10,14 +10,14 @@ from ramachandran.ramachandran import Ramachandran
 
 class TestRamachandran(unittest.TestCase):
     """Tests for `ramachandran` package."""
-    def __init__(self, test_sample):
-        self.test_sample = test_sample
 
     def setUp(self):
         """Set up test fixtures, if any."""
+        pass
 
     def tearDown(self):
         """Tear down test fixtures, if any."""
+        pass
 
     def test_001_vector_norm_dihedral(self):
         """Test something."""
@@ -63,8 +63,8 @@ class TestRamachandran(unittest.TestCase):
 
     def test_002_calculate_psi(self):
         """"""
-        # test_sample = './2j5p_dihedral_matrix_.csv'
-        test_df = pd.read_csv(self.test_sample, header=None)
+        test_sample = './2j5p_dihedral_matrix_.csv'
+        test_df = pd.read_csv(test_sample, header=None)
         self.test_array = test_df[[2, 3, 4]].to_numpy() # numpy array containing only the atomic coordinate information
         Ramachandran.vectorise_psi(self)
         Ramachandran.psi(self)
@@ -165,8 +165,8 @@ class TestRamachandran(unittest.TestCase):
 
     def test_003_calculate_phi(self):
         """"""
-        # test_sample = './2j5p_dihedral_matrix_.csv'
-        test_df = pd.read_csv(self.test_sample, header=None)
+        test_sample = './2j5p_dihedral_matrix_.csv'
+        test_df = pd.read_csv(test_sample, header=None)
         self.test_array = test_df[[2, 3, 4]].to_numpy() # numpy array containing only the atomic coordinate information
         Ramachandran.vectorise_phi(self)
         Ramachandran.phi(self)
@@ -366,12 +366,67 @@ class TestRamachandran(unittest.TestCase):
         self.assertAlmostEqual(np.round(theta_test_6_deg, 1),-59.6*-1)
         self.assertAlmostEqual(np.round(theta_test_7_deg, 1),-66.4*-1)
 
+    def test_005_test_statistics(self):
+
+        test_array = np.array([[1, 2],
+                               [3, 4],
+                               [7, 8],
+                               [1, 4],
+                               [3, 10],
+                               [7, 9],
+                               [7,13]])
+
+        test_mean_1 = (2 + 4)/2
+        test_mean_3 = (4 + 10)/2
+        test_mean_7 = (8 + 9 + 13)/3
+        test_std_1 = np.sqrt(((2 - test_mean_1)**2 + (4 - test_mean_1)**2)/2)
+        test_std_3 = np.sqrt(((4 - test_mean_3)**2 + (10 - test_mean_3)**2)/2)
+        test_std_7 = np.sqrt((((8 - test_mean_7)**2 + (9 - test_mean_7)**2 + (13 - test_mean_7)**2))/3)
+
+        results = []
+        for i in set(test_array[:,0]):
+            print(i)
+            mask = (test_array[:,0] == i)
+            test_data = test_array[mask]
+            print(test_data)
+
+            mean = test_data[:,1].mean()
+            std = test_data[:,1].std()
+            results.append(mean)
+            results.append(std)
+
+            print("Data for ******* {} *******".format(i))
+            print("Mean: {}".format(mean))
+            print("Std: {}".format(std))
+
+        print('\n')
+        print("Test data for ******* 1 *******")
+        print("Test Mean: {}".format(test_mean_1))
+        print("Test Std: {}".format(test_std_1))
+        print("Test data for ******* 3 *******")
+        print("Test Mean: {}".format(test_mean_3))
+        print("Test std: {}".format(test_std_3))
+        print("Test data for ******* 7 *******")
+        print("Test mean: {}".format(test_mean_7))
+        print("Test std: {}".format(test_std_7))
+
+        print(results)
+
+        self.assertEqual(results[0], test_mean_1)
+        self.assertEqual(results[1], test_std_1)
+        self.assertEqual(results[2], test_mean_3)
+        self.assertEqual(results[3], test_std_3)
+        self.assertEqual(results[4], test_mean_7)
+        self.assertEqual(results[5], test_std_7)
+
+
 def main():
-    tester = TestRamachandran('./2j5p_dihedral_matrix_.csv')
+    tester = TestRamachandran()
     tester.test_001_vector_norm_dihedral()
     tester.test_002_calculate_psi()
     tester.test_003_calculate_phi()
     tester.test_004_test_on_coordinates()
+    tester.test_005_test_statistics()
 
 if __name__ == '__main__':
-    main()
+    unittest.main()
