@@ -23,6 +23,12 @@
 
 -[x] Finish README
 
+-[x] Extraction of atomic coordinate info from pdb.mmcif files
+
+-[x] Extract info to calculate dihedral angles
+
+-[x] Calculate phi & psi angles
+
 -[ ] Update badges
 
 -[ ] Correct phi & pis angles to be in the range [-pi, pi]
