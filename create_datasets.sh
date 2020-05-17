@@ -13,7 +13,7 @@ if [ $# -ne 3 ]; then
 fi
 
 # Preparation of a virtual environment
-# Commented out when running massive batch processing
+# VERY IMPORTANT: Comment out when running massive batch processing
 echo Creating virtual environment for data preparation...
 ENV=$(cat ./environment.yml | grep name | cut -f 2 -d ':')
 conda update -n base conda # to update to latest version of conda
@@ -62,7 +62,7 @@ echo Phi angles and amino acid tags merged
 # Create the output folder and transfer files there
 mkdir ./output
 
-cd ./$2git co
+cd ./$2
 mv *_amino_* ../output/
 cd ../
 rm -rf ./$2

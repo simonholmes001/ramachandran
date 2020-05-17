@@ -18,7 +18,7 @@ ENV=$(cat ./environment.yml | grep name | cut -f 2 -d ':')
 conda update -n base conda # to update to latest version of conda
 conda remove --name $ENV --all # to remove any previously installed environments called $ENV
 conda activate base
-conda env create -f environment.yml
+conda env create -fy environment.yml
 conda activate $ENV
 echo Virtual environment ready
 
@@ -64,7 +64,7 @@ echo Transferring phi angle files...
 cp output/*amino_phi* /media/simon/disk/protein_folding/phi_angles/
 sleep 5
 echo Transferring psi angle files...
-cp output/*amino_psi* /media/simon/disk/protein_folding/psi_angles/
+cp output/*amino_psi* /media/simon/disk/protein_folding/psi_angles_2/
 sleep 5
 
 echo Starting data sets a to j
@@ -109,7 +109,7 @@ echo Transferring phi angle files...
 cp output/*amino_phi* /media/simon/disk/protein_folding/phi_angles/
 sleep 5
 echo Transferring psi angle files...
-cp output/*amino_psi* /media/simon/disk/protein_folding/psi_angles/
+cp output/*amino_psi* /media/simon/disk/protein_folding/psi_angles_2/
 sleep 5
 
 echo Starting DataSets k to s
@@ -151,7 +151,7 @@ echo Transferring phi angle files...
 cp output/*amino_phi* /media/simon/disk/protein_folding/phi_angles/
 sleep 5
 echo Transferring psi angle files...
-cp output/*amino_psi* /media/simon/disk/protein_folding/psi_angles/
+cp output/*amino_psi* /media/simon/disk/protein_folding/psi_angles_2/
 sleep 5
 
 echo Starting DataSets t to z
@@ -186,7 +186,7 @@ echo Transferring phi angle files...
 cp output/*amino_phi* /media/simon/disk/protein_folding/phi_angles/
 sleep 5
 echo Transferring psi angle files...
-cp output/*amino_psi* /media/simon/disk/protein_folding/psi_angles/
+cp output/*amino_psi* /media/simon/disk/protein_folding/psi_angles_2/
 sleep 5
 
 conda deactivate
