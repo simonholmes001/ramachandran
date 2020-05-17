@@ -33,7 +33,7 @@
 
 -[ ] Correct phi & pis angles to be in the range [-pi, pi]
 
--[ ] Write scripts for statistical analysis of the phi & psi angles of the PDB collection
+-[x] Write scripts for statistical analysis of the phi & psi angles of the PDB collection
 
 -[x] Unit tests
 
@@ -148,8 +148,8 @@ The ψ angle is calculated between the normals made by the Ni, Cαi, Ci plane an
 Due to steric constraints of the amino acid side chains - amino acids are mostly found in the *trans* configuration - not all values of phi & psi are allowed.
 As a result of these steric constraints, only certain values of ɸ and ψ, and hence conformations of the peptide, are permitted whilst others are not.
 
-A conformational plot of ɸ against ψ for a particular residue or protein is known as a Ramachandran plot (after its inventor, G. N. Ramachandran).
-The values of ɸ and ψ in a Ramachandran plot range, as per convention, from −180º to +180º.
+A conformational plot of ɸ against ψ for a particular residue or protein is known as a Ramachandran plot (after its inventor, [G. N. Ramachandran](https://en.wikipedia.org/wiki/G._N._Ramachandran)).
+The values of ɸ and ψ in a [Ramachandran plot](https://en.wikipedia.org/wiki/Ramachandran_plot) range, as per convention, from −180º to +180º.
 
 ![](./img/ramachandran.jpg)
 
@@ -160,7 +160,7 @@ The values of ɸ and ψ in a Ramachandran plot range, as per convention, from �
 ### Repo Set-Up
 
 The repo should be downloaded by running `git clone https://github.com/simonholmes001/ramachandran.git`
-in the command line. `cd` into the newly created `ramachandran`.
+in the command line. `cd` into the newly created `ramachandran` folder.
 
 To initialise the project, this repo follows some of the sane steps as the [protein_structure repo](https://github.com/simonholmes001/structure_prediction).
 The first step is to create a folder in the main repo that holds the data to be processed, containing the folders downloaded from the PDB.
@@ -192,7 +192,7 @@ The `data` flag directs the script to look for the downloaded & unzipped PDB fil
 
 The `temporary_holding_file` flag indicates to the script a folder location to store data temporarily.
 
-The <a name="below_1"></a> `path_to_aino_acid_tags` flag indicates to the scriopt the location of where you have saved the amino acid tags for the protein samples, generated
+The <a name="below_1"></a> `path_to_aino_acid_tags` flag indicates to the script the location of where you have saved the amino acid tags for the protein samples, generated
 by running the [protein_structure repo](https://github.com/simonholmes001/structure_prediction).
 
 Running this command will perform the following events:
@@ -204,14 +204,22 @@ Running this command will perform the following events:
 - Removes any empty files, such as DNA or RNA submissions (`remove_empty_files.sh`)
 - Prepares a matrix of the atomic coordinates of the N, alpha-C, carbonyl-C atoms for the calculation of the dihedral angles (`create_dihedrral_matrix.py`)
 - Prepares the data for phi and psi angle calculation & defines the methods to calculate the angles (`ramachandran.py`)
-- Calculates the phi (`phi_angles.py`) & psi angles (`psi_angles>py`), in radians, for each residue for each protein, saving the outputs as pickle objects
-- [TO DO] Prepares a statistical analysis, for each amino acid, of the distribution of phi & psi angles found in the collection of proteins found in the PDB
+- Calculates the phi (`phi_angles.py`) & psi angles (`psi_angles.py`), in radians, for each residue for each protein, saving the outputs as pickle objects
 
 ### Unit Testing
 
 The repo was tested on PDB entry 1a11 & test data is available in the `/tests/` folder. Phi & psi angles were compared to angles from here: https://stackoverflow.com/questions/25355401/getting-all-dihedral-angles-in-pymol
 
 ## Statistical Analysis
+
+Once the phi & psi angles have been calculated for all of the PDB submissions, statistical analyses can be performed on the data. To consolidate all of the data for either the phi or psi angles, the `./ramachandran/run_average_statistics.py` script can be run. This script requires three flags:
+
+- the --input_path flag that indicates the location of the phi & psi angle files generated after running the above
+- the --output_path flag that indicates the location to store the result of the `run_average_statistics.py` script, and
+- the --angle flag that indicates the angle data that you want to analyse (phi or psi)
+
+Running the script generates as output a `.csv` file that concatenates the phi or pis angles for all proteins in the dataset. Further analysis
+can then be performed on the concatenated dataset.
 
 ## Packaging
 
